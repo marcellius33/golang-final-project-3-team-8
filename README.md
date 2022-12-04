@@ -32,7 +32,8 @@
 # Cara Install
 
 1. run `docker compose up` untuk menjalankan database
-2. run `go run main.go` untuk menjalankan applikasi
+2. run `go run main.go seeder` untuk menjalankan aplikasi dan seeder admin
+3. run `go run main.go` untuk menjalankan aplikasi jika sudah pernah seeder admin
 
 # List Route
 

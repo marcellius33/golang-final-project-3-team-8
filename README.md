@@ -41,3 +41,21 @@
 
 - `POST` - `/users/register`. Digunakan untuk registrasi pengguna
 - `POST` - `/users/login`. Digunakan untuk login pengguna
+- `PUT` - `/users/update-account`. Digunakan untuk mengupdate data diri pengguna
+- `DELETE` - `/users/delete-account`. Digunakan untuk menghapus akunnya sendiri
+
+## Categories
+
+- `POST` - `/categories`. Digunakan untuk membuat kategori baru
+- `GET` - `/categories`. Digunakan untuk mendapat list kategori
+- `PATCH` - `/categories/:categoryId`. Digunakan untuk mengupdate data kategori
+- `DELETE` - `/categories/:categoryId`. Digunakan untuk menghapus sebuah kategori
+
+## Tasks
+
+- `POST` - `/tasks`. Digunakan untuk membuat sebuah task
+- `GET` - `/tasks`. Digunakan untuk mendapat list task
+- `PUT` - `/tasks/:taskId`. Digunakan untuk mengupdate data task
+- `PATCH` - `/tasks/update-status/:taskId`. Digunakan untuk mengupdate status task
+- `PATCH` - `/tasks/update-category/:taskId`. Digunakan untuk mengupdate category task
+- `DELETE` - `/tasks/:taskId`. Digunakan untuk menghapus sebuah task

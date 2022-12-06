@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"github.com/gin-gonic/gin"
 	"kanbanboard/controllers"
 	"kanbanboard/database"
 	"kanbanboard/database/seed"
@@ -11,8 +10,12 @@ import (
 	"kanbanboard/services"
 	"os"
 
+	"github.com/gin-gonic/gin"
+
 	"kanbanboard/repositories"
 )
+
+// TODO: Middleware
 
 func init() {
 	database.Connect()
@@ -24,7 +27,7 @@ func handleArgs() {
 
 	if len(args) >= 1 {
 		switch args[0] {
-		case "seeder":
+		case "seed":
 			userRepository := repositories.NewUserRepository(database.GetDB())
 			userSeed := seed.NewUserSeeder(userRepository)
 			userSeed.Execute()
@@ -41,6 +44,11 @@ func main() {
 	userService := services.NewUserService(userRepository)
 	userController := controllers.NewUserController(userService)
 	routers.InitUserRoutes(Routes, userController)
+
+	categoryRepository := repositories.NewCategoryRepository(database.GetDB())
+	categoryService := services.NewCategoryService(categoryRepository, userRepository)
+	categoryController := controllers.NewCategoryController(categoryService)
+	routers.InitCategoriesRoutes(Routes, categoryController)
 
 	Routes.Run(os.Getenv("SERVER_PORT"))
 }

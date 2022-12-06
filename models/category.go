@@ -11,4 +11,5 @@ type Category struct {
 	Type      string    `json:"type" gorm:"type:varchar(255);not null"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
+	Task	  []Task
 }

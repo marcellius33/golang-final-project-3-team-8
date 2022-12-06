@@ -37,6 +37,11 @@ https://golang-final-project-3-team-8-production.up.railway.app
 2. run `go run main.go seeder` untuk menjalankan aplikasi dan seeder admin
 3. run `go run main.go` untuk menjalankan aplikasi jika sudah pernah seeder admin
 
+## Credential Admin
+```
+email: admin@gmail.com
+password: admin123
+```
 # List Route
 
 ## Users

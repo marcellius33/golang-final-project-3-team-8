@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"kanbanboard/helpers"
 	"kanbanboard/params"
@@ -50,9 +51,29 @@ func (u *UserController) UserLoginController(c *gin.Context) {
 }
 
 func (u *UserController) UserUpdateController(c *gin.Context) {
+	user := params.UserUpdateRequest{}
+	if err := c.ShouldBindJSON(&user); err != nil {
+		helpers.WriteJsonResponse(c, helpers.BadRequestResponse(err))
+		return
+	}
 
+	userData, _ := c.MustGet("userData").(jwt.MapClaims)
+	updatedUser, err := u.service.Update(uint(userData["id"].(float64)), user)
+	if err != nil {
+		helpers.WriteJsonResponse(c, helpers.BadRequestResponse(err))
+		return
+	}
+
+	helpers.WriteJsonResponse(c, helpers.SuccessResponse(updatedUser, "Update Success"))
 }
 
 func (u *UserController) UserDeleteController(c *gin.Context) {
+	userData, _ := c.MustGet("userData").(jwt.MapClaims)
+	err := u.service.Delete(uint(userData["id"].(float64)))
+	if err != nil {
+		helpers.WriteJsonResponse(c, helpers.BadRequestResponse(err))
+		return
+	}
 
+	helpers.WriteJsonResponse(c, helpers.DeleteSuccess("Your account has been successfully deleted"))
 }

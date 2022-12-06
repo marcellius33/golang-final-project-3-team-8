@@ -14,8 +14,6 @@ import (
 	"kanbanboard/repositories"
 )
 
-// TODO: Check Validation
-// TODO: Update and Delete User
 // TODO: Middleware
 
 func init() {

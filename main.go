@@ -24,7 +24,7 @@ func handleArgs() {
 
 	if len(args) >= 1 {
 		switch args[0] {
-		case "seed":
+		case "seeder":
 			userRepository := repositories.NewUserRepository(database.GetDB())
 			userSeed := seed.NewUserSeeder(userRepository)
 			userSeed.Execute()

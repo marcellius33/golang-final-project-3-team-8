@@ -17,7 +17,7 @@ func NewUserSeeder(repository repositories.UserRepository) *UserSeeder {
 }
 
 func (u *UserSeeder) Execute() {
-	pwHash, _ := bcrypt.GenerateFromPassword([]byte("admin"), bcrypt.DefaultCost)
+	pwHash, _ := bcrypt.GenerateFromPassword([]byte("admin123"), bcrypt.DefaultCost)
 
 	admin := models.User{
 		FullName: "admin",

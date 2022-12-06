@@ -11,10 +11,11 @@ import (
 
 var secretKey = os.Getenv("JWT_SECRET_KEY")
 
-func GenerateToken(id uint, email string) string {
+func GenerateToken(id uint, email string, role string) string {
 	claims := jwt.MapClaims{
 		"id":    id,
 		"email": email,
+		"role":  role,
 	}
 
 	parseToken := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)

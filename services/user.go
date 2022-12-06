@@ -54,7 +54,7 @@ func (u userService) Login(userLoginRequest params.UserLoginRequest) (*params.Us
 		return &params.UserLoginResponse{}, err
 	}
 
-	token := helpers.GenerateToken(userFound.ID, userFound.Email)
+	token := helpers.GenerateToken(userFound.ID, userFound.Email, userFound.Role)
 
 	resp := params.UserLoginResponse{}
 	resp.Token = token

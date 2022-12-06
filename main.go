@@ -14,8 +14,6 @@ import (
 	"kanbanboard/repositories"
 )
 
-// TODO: Middleware
-
 func init() {
 	database.Connect()
 }

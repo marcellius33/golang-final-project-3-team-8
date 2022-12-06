@@ -19,7 +19,6 @@ https://golang-final-project-3-team-8-production.up.railway.app
 - API Task
 - API Category
 - Postman (Collection, Environment, Documentation)
-- Unit Test
 
 2. Raden Muhammad Yudie Sanjaya (GLNG-KS04-016) :x:
 
@@ -30,6 +29,7 @@ https://golang-final-project-3-team-8-production.up.railway.app
 - API User
 - Readme
 - Deploy
+- Unit Test
 
 # Cara Install
 

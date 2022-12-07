@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func InitCategoriesRoutes(Routes *gin.Engine, controller *controllers.CategoryController) {
+func InitCategoryRoutes(Routes *gin.Engine, controller *controllers.CategoryController) {
 	categoryRouter := Routes.Group("/categories")
 	{
 		categoryRouter.POST("/", middlewares.Authentication(), middlewares.Authorization([]string{"admin"}),controller.CreateCategory)

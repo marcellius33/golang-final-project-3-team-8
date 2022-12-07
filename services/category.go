@@ -9,7 +9,7 @@ import (
 type CategoryService interface {
 	CreateCategory(createCategoryRequest params.CreateCategoryRequest) (*params.CreateCategoryResponse, error)
 	GetCategories() (*[]models.Category, error)
-	UpdateCategory(categoryId uint, CategoryUpdateRequest params.UpdateCategoryRequest) (*params.UpdateCategoryResponse, error)
+	UpdateCategory(categoryId uint, categoryUpdateRequest params.UpdateCategoryRequest) (*params.UpdateCategoryResponse, error)
 	DeleteCategory(categoryId uint) error
 }
 

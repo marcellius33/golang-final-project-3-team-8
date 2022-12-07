@@ -48,7 +48,12 @@ func main() {
 	categoryRepository := repositories.NewCategoryRepository(database.GetDB())
 	categoryService := services.NewCategoryService(categoryRepository, userRepository)
 	categoryController := controllers.NewCategoryController(categoryService)
-	routers.InitCategoriesRoutes(Routes, categoryController)
+	routers.InitCategoryRoutes(Routes, categoryController)
+
+	taskRepository := repositories.NewTaskRepository(database.GetDB())
+	taskService := services.NewTaskService(taskRepository, categoryRepository,userRepository)
+	taskController := controllers.NewTaskController(taskService)
+	routers.InitTaskRoutes(Routes, taskController)
 
 	Routes.Run(os.Getenv("SERVER_PORT"))
 }

@@ -15,8 +15,6 @@ import (
 	"kanbanboard/repositories"
 )
 
-// TODO: Middleware
-
 func init() {
 	database.Connect()
 }
@@ -27,7 +25,7 @@ func handleArgs() {
 
 	if len(args) >= 1 {
 		switch args[0] {
-		case "seed":
+		case "seeder":
 			userRepository := repositories.NewUserRepository(database.GetDB())
 			userSeed := seed.NewUserSeeder(userRepository)
 			userSeed.Execute()
@@ -51,7 +49,7 @@ func main() {
 	routers.InitCategoryRoutes(Routes, categoryController)
 
 	taskRepository := repositories.NewTaskRepository(database.GetDB())
-	taskService := services.NewTaskService(taskRepository, categoryRepository,userRepository)
+	taskService := services.NewTaskService(taskRepository, categoryRepository, userRepository)
 	taskController := controllers.NewTaskController(taskService)
 	routers.InitTaskRoutes(Routes, taskController)
 

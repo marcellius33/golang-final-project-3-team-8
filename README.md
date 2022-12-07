@@ -19,7 +19,6 @@ https://golang-final-project-3-team-8-production.up.railway.app
 - API Task
 - API Category
 - Postman (Collection, Environment, Documentation)
-- Unit Test
 
 2. Raden Muhammad Yudie Sanjaya (GLNG-KS04-016) :x:
 
@@ -30,6 +29,7 @@ https://golang-final-project-3-team-8-production.up.railway.app
 - API User
 - Readme
 - Deploy
+- Unit Test
 
 # Cara Install
 
@@ -37,6 +37,11 @@ https://golang-final-project-3-team-8-production.up.railway.app
 2. run `go run main.go seeder` untuk menjalankan aplikasi dan seeder admin
 3. run `go run main.go` untuk menjalankan aplikasi jika sudah pernah seeder admin
 
+## Credential Admin
+```
+email: admin@gmail.com
+password: admin123
+```
 # List Route
 
 ## Users

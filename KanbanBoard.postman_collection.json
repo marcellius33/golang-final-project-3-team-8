@@ -1,0 +1,1993 @@
+{
+	"info": {
+		"_postman_id": "9db93eb1-0109-4fb9-9c78-b60243650710",
+		"name": "KanbanBoard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21171989"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register User with Valid Payload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('response status code should have 201 value', () => {\r",
+									"   pm.response.to.have.status(201);\r",
+									"}); \r",
+									" \r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"}); \r",
+									" \r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									" \r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									" \r",
+									"    pm.expect(responseJson).to.ownProperty('status');\r",
+									"    pm.expect(responseJson.status).to.equals(201);\r",
+									"    pm.expect(responseJson).to.ownProperty('message');\r",
+									"    pm.expect(responseJson.message).to.equals('Register Success');\r",
+									"    pm.expect(responseJson).to.ownProperty('payload');\r",
+									"    pm.expect(responseJson.payload).to.be.an('object');\r",
+									"});\r",
+									" \r",
+									"pm.test('response body data should have id property and not equal to empty', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    const { payload } = responseJson;\r",
+									" \r",
+									"    pm.expect(payload).to.ownProperty('id');\r",
+									"    pm.expect(payload.id).to.not.equals('');\r",
+									" \r",
+									"    pm.environment.set('currentUserId', payload.id);\r",
+									"    pm.environment.set('currentEmail', payload.email);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"full_name\" : \"Username Test1122\",\r\n    \"email\" : \"usernametest22@gmail.com\",\r\n    \"password\": \"{{passwordUser}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://golang-final-project-3-team-8-production.up.railway.app/users/register",
+							"protocol": "https",
+							"host": [
+								"golang-final-project-3-team-8-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register User with Valid Payload",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"full_name\" : \"Username Test1122\",\r\n    \"email\" : \"usernametest22@gmail.com\",\r\n    \"password\": \"{{passwordUser}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://golang-final-project-3-team-8-production.up.railway.app/users/register",
+									"protocol": "https",
+									"host": [
+										"golang-final-project-3-team-8-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 08 Dec 2022 06:58:22 GMT"
+								},
+								{
+									"key": "content-length",
+									"value": "173"
+								},
+								{
+									"key": "x-envoy-upstream-service-time",
+									"value": "363"
+								},
+								{
+									"key": "server",
+									"value": "railway"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 201,\n    \"message\": \"Register Success\",\n    \"payload\": {\n        \"id\": 4,\n        \"full_name\": \"Username Test1122\",\n        \"email\": \"usernametest22@gmail.com\",\n        \"created_at\": \"2022-12-08T06:58:22.5619719Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login with Valid Payload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('response status code should have 200 value', () => {\r",
+									"   pm.response.to.have.status(200);\r",
+									"}); \r",
+									" \r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"}); \r",
+									" \r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									" \r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									" \r",
+									"    pm.expect(responseJson).to.ownProperty('status');\r",
+									"    pm.expect(responseJson.status).to.equals(200);\r",
+									"    pm.expect(responseJson).to.ownProperty('message');\r",
+									"    pm.expect(responseJson.message).to.equals('Login Success');\r",
+									"    pm.expect(responseJson).to.ownProperty('payload');\r",
+									"    pm.expect(responseJson.payload).to.be.an('object');\r",
+									"});\r",
+									" \r",
+									"pm.test('response body data should have property accessToken and refreshToken with correct value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    const { payload } = responseJson;\r",
+									" \r",
+									"    pm.expect(payload).to.have.ownProperty('token');\r",
+									"    pm.expect(payload.token).to.not.equals('');\r",
+									"    pm.expect(payload.token).to.not.equals(null);\r",
+									" \r",
+									"    // menyimpan accessToken dan refreshToken di environment variable\r",
+									"    pm.environment.set('accessToken', payload.token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"{{currentEmail}}\",\r\n    \"password\": \"{{passwordUser}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login with Valid Payload",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"{{currentEmail}}\",\r\n    \"password\": \"{{passwordUser}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://golang-final-project-3-team-8-production.up.railway.app/users/login",
+									"protocol": "https",
+									"host": [
+										"golang-final-project-3-team-8-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 08 Dec 2022 06:58:43 GMT"
+								},
+								{
+									"key": "content-length",
+									"value": "223"
+								},
+								{
+									"key": "x-envoy-upstream-service-time",
+									"value": "85"
+								},
+								{
+									"key": "server",
+									"value": "railway"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Login Success\",\n    \"payload\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJuYW1ldGVzdDIyQGdtYWlsLmNvbSIsImlkIjo0LCJyb2xlIjoibWVtYmVyIn0.YlB0hR0kh0es22Hd0RZ9IemTSvP8sRpqyqJlLKPeBtY\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User with Valid Payload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('response status code should have 200 value', () => {\r",
+									"   pm.response.to.have.status(200);\r",
+									"}); \r",
+									" \r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"}); \r",
+									" \r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									" \r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									" \r",
+									"    pm.expect(responseJson).to.ownProperty('status');\r",
+									"    pm.expect(responseJson.status).to.equals(200);\r",
+									"    pm.expect(responseJson).to.ownProperty('message');\r",
+									"    pm.expect(responseJson.message).to.equals('Update Success');\r",
+									"    pm.expect(responseJson).to.ownProperty('payload');\r",
+									"    pm.expect(responseJson.payload).to.be.an('object');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"full_name\" : \"Username Test222x\",\r\n    \"email\" : \"usernametestxx@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://golang-final-project-3-team-8-production.up.railway.app/users/update-account",
+							"protocol": "https",
+							"host": [
+								"golang-final-project-3-team-8-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"users",
+								"update-account"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update User with Valid Payload",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"full_name\" : \"Username Test222x\",\r\n    \"email\" : \"usernametestxx@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://golang-final-project-3-team-8-production.up.railway.app/users/update-account",
+									"protocol": "https",
+									"host": [
+										"golang-final-project-3-team-8-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"users",
+										"update-account"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 08 Dec 2022 07:02:48 GMT"
+								},
+								{
+									"key": "content-length",
+									"value": "173"
+								},
+								{
+									"key": "x-envoy-upstream-service-time",
+									"value": "131"
+								},
+								{
+									"key": "server",
+									"value": "railway"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Update Success\",\n    \"payload\": {\n        \"id\": 4,\n        \"full_name\": \"Username Test222x\",\n        \"email\": \"usernametestxx@gmail.com\",\n        \"updated_at\": \"2022-12-08T07:02:48.073033225Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User with Valid Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('response status code should have 200 value', () => {\r",
+									"   pm.response.to.have.status(200);\r",
+									"}); \r",
+									" \r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"}); \r",
+									" \r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									" \r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									" \r",
+									"    pm.expect(responseJson).to.ownProperty('status');\r",
+									"    pm.expect(responseJson.status).to.equals(200);\r",
+									"    pm.expect(responseJson).to.ownProperty('message');\r",
+									"    pm.expect(responseJson.message).to.equals('Your account has been successfully deleted');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://golang-final-project-3-team-8-production.up.railway.app/users/delete-account",
+							"protocol": "https",
+							"host": [
+								"golang-final-project-3-team-8-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"users",
+								"delete-account"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete User with Valid Id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://golang-final-project-3-team-8-production.up.railway.app/users/delete-account",
+									"protocol": "https",
+									"host": [
+										"golang-final-project-3-team-8-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"users",
+										"delete-account"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 08 Dec 2022 07:03:16 GMT"
+								},
+								{
+									"key": "content-length",
+									"value": "69"
+								},
+								{
+									"key": "x-envoy-upstream-service-time",
+									"value": "29"
+								},
+								{
+									"key": "server",
+									"value": "railway"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Your account has been successfully deleted\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Prerequisite",
+			"item": [
+				{
+					"name": "[Prerequisite] Login with Valid Payload Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const { payload } = pm.response.json();\r",
+									"pm.environment.set('accessToken', payload.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"{{emailAdmin}}\",\r\n    \"password\": \"{{passwordAdmin}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://golang-final-project-3-team-8-production.up.railway.app/users/login",
+							"protocol": "https",
+							"host": [
+								"golang-final-project-3-team-8-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Prerequisite] Add Category with Valid Payload Copy 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const { payload } = pm.response.json();\r",
+									"pm.environment.set('categoryTaskId', payload.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\" : \"tessst dummy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://golang-final-project-3-team-8-production.up.railway.app/categories/",
+							"protocol": "https",
+							"host": [
+								"golang-final-project-3-team-8-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"categories",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Add Category with Valid Payload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('response status code should have 200 value', () => {\r",
+									"   pm.response.to.have.status(201);\r",
+									"}); \r",
+									"\r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"}); \r",
+									"\r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.ownProperty('status');\r",
+									"    pm.expect(responseJson.status).to.equals(201);\r",
+									"    pm.expect(responseJson).to.ownProperty('message');\r",
+									"    pm.expect(responseJson.message).to.equals('Create Category Success');\r",
+									"    pm.expect(responseJson).to.ownProperty('payload');\r",
+									"    pm.expect(responseJson.payload).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body data should have noteId property and not equal to empty', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    const { payload } = responseJson;\r",
+									" \r",
+									"    pm.expect(payload).to.ownProperty('id');\r",
+									"    pm.expect(payload.id).to.not.equals(null);\r",
+									" \r",
+									"    pm.environment.set('categoryId', payload.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\" : \"tessst\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://golang-final-project-3-team-8-production.up.railway.app/categories/",
+							"protocol": "https",
+							"host": [
+								"golang-final-project-3-team-8-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"categories",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Category with Valid Payload",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\" : \"tessst\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://golang-final-project-3-team-8-production.up.railway.app/categories/",
+									"protocol": "https",
+									"host": [
+										"golang-final-project-3-team-8-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"categories",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 08 Dec 2022 07:26:31 GMT"
+								},
+								{
+									"key": "content-length",
+									"value": "131"
+								},
+								{
+									"key": "x-envoy-upstream-service-time",
+									"value": "8"
+								},
+								{
+									"key": "server",
+									"value": "railway"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 201,\n    \"message\": \"Create Category Success\",\n    \"payload\": {\n        \"id\": 2,\n        \"type\": \"tessst\",\n        \"created_at\": \"2022-12-08T07:26:31.896855539Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Category with Valid Authorization",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('response status code should have 200 value', () => {\r",
+									"   pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"   pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should an object', () => {\r",
+									"   const responseJson = pm.response.json();\r",
+									"   pm.expect(responseJson).to.be.an('object');\r",
+									"}); \r",
+									"\r",
+									"pm.test('response body should have the correct property and value', () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"   pm.expect(responseJson).to.have.ownProperty('status');\r",
+									"   pm.expect(responseJson.status).to.equals(200);\r",
+									"   pm.expect(responseJson).to.have.ownProperty('payload');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body data should have a notes array and contain at least 1 item', () => {\r",
+									"   const responseJson = pm.response.json();\r",
+									"   const { payload } = responseJson;\r",
+									"\r",
+									"   pm.expect(payload).to.be.an('array');\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://golang-final-project-3-team-8-production.up.railway.app/categories/",
+							"protocol": "https",
+							"host": [
+								"golang-final-project-3-team-8-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"categories",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Category with Valid Authorization",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://golang-final-project-3-team-8-production.up.railway.app/categories/",
+									"protocol": "https",
+									"host": [
+										"golang-final-project-3-team-8-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"categories",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 08 Dec 2022 07:24:24 GMT"
+								},
+								{
+									"key": "content-length",
+									"value": "182"
+								},
+								{
+									"key": "x-envoy-upstream-service-time",
+									"value": "6"
+								},
+								{
+									"key": "server",
+									"value": "railway"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Get Categories Success\",\n    \"payload\": [\n        {\n            \"id\": 1,\n            \"type\": \"tessst\",\n            \"created_at\": \"2022-12-08T07:18:51.445504Z\",\n            \"updated_at\": \"2022-12-08T07:18:51.445504Z\",\n            \"Task\": []\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit Category  with Valid Auth and Payload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('response status code should have 200 value', () => {\r",
+									"   pm.response.to.have.status(200);\r",
+									"}); \r",
+									" \r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"}); \r",
+									" \r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									" \r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									" \r",
+									"    pm.expect(responseJson).to.ownProperty('status');\r",
+									"    pm.expect(responseJson.status).to.equals(200);\r",
+									"    pm.expect(responseJson).to.ownProperty('message');\r",
+									"    pm.expect(responseJson.message).to.equals('Update Category Success');\r",
+									"    pm.expect(responseJson).to.ownProperty('payload');\r",
+									"    pm.expect(responseJson.payload).to.be.an('object');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\" : \"tessst edit\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://golang-final-project-3-team-8-production.up.railway.app/categories/{{categoryId}}",
+							"protocol": "https",
+							"host": [
+								"golang-final-project-3-team-8-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"categories",
+								"{{categoryId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit Category  with Valid Auth and Payload",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\" : \"tessst edit\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://golang-final-project-3-team-8-production.up.railway.app/categories/{{categoryId}}",
+									"protocol": "https",
+									"host": [
+										"golang-final-project-3-team-8-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"categories",
+										"{{categoryId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 08 Dec 2022 07:30:37 GMT"
+								},
+								{
+									"key": "content-length",
+									"value": "133"
+								},
+								{
+									"key": "x-envoy-upstream-service-time",
+									"value": "5"
+								},
+								{
+									"key": "server",
+									"value": "railway"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Update Category Success\",\n    \"payload\": {\n        \"id\": 2,\n        \"type\": \"tessst edit\",\n        \"created_at\": \"2022-12-08T07:26:31.896855Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Category with Valid Auth and Payload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('response status code should have 200 value', () => {\r",
+									"   pm.response.to.have.status(200);\r",
+									"}); \r",
+									" \r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"}); \r",
+									" \r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									" \r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									" \r",
+									"    pm.expect(responseJson).to.ownProperty('status');\r",
+									"    pm.expect(responseJson.status).to.equals(200);\r",
+									"    pm.expect(responseJson).to.ownProperty('message');\r",
+									"    pm.expect(responseJson.message).to.equals('Your Category has been successfully deleted');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://golang-final-project-3-team-8-production.up.railway.app/categories/{{categoryId}}",
+							"protocol": "https",
+							"host": [
+								"golang-final-project-3-team-8-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"categories",
+								"{{categoryId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Category with Valid Auth and Payload",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://golang-final-project-3-team-8-production.up.railway.app/categories/{{categoryId}}",
+									"protocol": "https",
+									"host": [
+										"golang-final-project-3-team-8-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"categories",
+										"{{categoryId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 08 Dec 2022 07:31:47 GMT"
+								},
+								{
+									"key": "content-length",
+									"value": "70"
+								},
+								{
+									"key": "x-envoy-upstream-service-time",
+									"value": "3"
+								},
+								{
+									"key": "server",
+									"value": "railway"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Your Category has been successfully deleted\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "Add Task with Valid Payload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('response status code should have 200 value', () => {\r",
+									"   pm.response.to.have.status(201);\r",
+									"}); \r",
+									"\r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"}); \r",
+									"\r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.ownProperty('status');\r",
+									"    pm.expect(responseJson.status).to.equals(201);\r",
+									"    pm.expect(responseJson).to.ownProperty('message');\r",
+									"    pm.expect(responseJson.message).to.equals('Create Task Success');\r",
+									"    pm.expect(responseJson).to.ownProperty('payload');\r",
+									"    pm.expect(responseJson.payload).to.be.an('object');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body data should have noteId property and not equal to empty', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    const { payload } = responseJson;\r",
+									" \r",
+									"    pm.expect(payload).to.ownProperty('id');\r",
+									"    pm.expect(payload.id).to.not.equals(null);\r",
+									" \r",
+									"    pm.environment.set('taskId', payload.id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"tesst\",\r\n    \"description\": \"desc\",\r\n    \"category_id\": {{categoryTaskId}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://golang-final-project-3-team-8-production.up.railway.app/tasks/",
+							"protocol": "https",
+							"host": [
+								"golang-final-project-3-team-8-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"tasks",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Task with Valid Payload",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"tesst\",\r\n    \"description\": \"desc\",\r\n    \"category_id\": {{categoryTaskId}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://golang-final-project-3-team-8-production.up.railway.app/tasks/",
+									"protocol": "https",
+									"host": [
+										"golang-final-project-3-team-8-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"tasks",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 08 Dec 2022 07:42:22 GMT"
+								},
+								{
+									"key": "content-length",
+									"value": "191"
+								},
+								{
+									"key": "x-envoy-upstream-service-time",
+									"value": "8"
+								},
+								{
+									"key": "server",
+									"value": "railway"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 201,\n    \"message\": \"Create Task Success\",\n    \"payload\": {\n        \"id\": 1,\n        \"title\": \"tesst\",\n        \"description\": \"desc\",\n        \"status\": false,\n        \"user_id\": 2,\n        \"category_id\": 4,\n        \"created_at\": \"2022-12-08T07:42:22.287015375Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Task with Valid Authorization",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('response status code should have 200 value', () => {\r",
+									"   pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"   pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body should an object', () => {\r",
+									"   const responseJson = pm.response.json();\r",
+									"   pm.expect(responseJson).to.be.an('object');\r",
+									"}); \r",
+									"\r",
+									"pm.test('response body should have the correct property and value', () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"   pm.expect(responseJson).to.have.ownProperty('status');\r",
+									"   pm.expect(responseJson.status).to.equals(200);\r",
+									"   pm.expect(responseJson).to.have.ownProperty('payload');\r",
+									"});\r",
+									"\r",
+									"pm.test('response body data should have a notes array and contain at least 1 item', () => {\r",
+									"   const responseJson = pm.response.json();\r",
+									"   const { payload } = responseJson;\r",
+									"\r",
+									"   pm.expect(payload).to.be.an('array');\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://golang-final-project-3-team-8-production.up.railway.app/tasks/",
+							"protocol": "https",
+							"host": [
+								"golang-final-project-3-team-8-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"tasks",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Task with Valid Authorization",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://golang-final-project-3-team-8-production.up.railway.app/tasks/",
+									"protocol": "https",
+									"host": [
+										"golang-final-project-3-team-8-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"tasks",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 08 Dec 2022 07:42:51 GMT"
+								},
+								{
+									"key": "content-length",
+									"value": "250"
+								},
+								{
+									"key": "x-envoy-upstream-service-time",
+									"value": "5"
+								},
+								{
+									"key": "server",
+									"value": "railway"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Get Tasks Success\",\n    \"payload\": [\n        {\n            \"id\": 1,\n            \"title\": \"tesst\",\n            \"description\": \"desc\",\n            \"status\": false,\n            \"user_id\": 2,\n            \"category_id\": 4,\n            \"created_at\": \"2022-12-08T07:42:22.287015Z\",\n            \"User\": {\n                \"id\": 2,\n                \"email\": \"admin@gmail.com\",\n                \"full_name\": \"admin\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit Task with Valid Auth and Payload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('response status code should have 200 value', () => {\r",
+									"   pm.response.to.have.status(200);\r",
+									"}); \r",
+									" \r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"}); \r",
+									" \r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									" \r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									" \r",
+									"    pm.expect(responseJson).to.ownProperty('status');\r",
+									"    pm.expect(responseJson.status).to.equals(200);\r",
+									"    pm.expect(responseJson).to.ownProperty('message');\r",
+									"    pm.expect(responseJson.message).to.equals('Update Task Success');\r",
+									"    pm.expect(responseJson).to.ownProperty('payload');\r",
+									"    pm.expect(responseJson.payload).to.be.an('object');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"tesst\",\r\n    \"description\": \"desc edit\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://golang-final-project-3-team-8-production.up.railway.app/tasks/{{taskId}}",
+							"protocol": "https",
+							"host": [
+								"golang-final-project-3-team-8-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"tasks",
+								"{{taskId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit Task with Valid Auth and Payload",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"tesst\",\r\n    \"description\": \"desc edit\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://golang-final-project-3-team-8-production.up.railway.app/tasks/{{taskId}}",
+									"protocol": "https",
+									"host": [
+										"golang-final-project-3-team-8-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"tasks",
+										"{{taskId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 08 Dec 2022 08:14:05 GMT"
+								},
+								{
+									"key": "content-length",
+									"value": "193"
+								},
+								{
+									"key": "x-envoy-upstream-service-time",
+									"value": "21"
+								},
+								{
+									"key": "server",
+									"value": "railway"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Update Task Success\",\n    \"payload\": {\n        \"id\": 1,\n        \"title\": \"tesst\",\n        \"description\": \"desc edit\",\n        \"status\": false,\n        \"user_id\": 2,\n        \"category_id\": 4,\n        \"created_at\": \"2022-12-08T07:42:22.287015Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit Status Task with Valid Auth and Payload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('response status code should have 200 value', () => {\r",
+									"   pm.response.to.have.status(200);\r",
+									"}); \r",
+									" \r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"}); \r",
+									" \r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									" \r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									" \r",
+									"    pm.expect(responseJson).to.ownProperty('status');\r",
+									"    pm.expect(responseJson.status).to.equals(200);\r",
+									"    pm.expect(responseJson).to.ownProperty('message');\r",
+									"    pm.expect(responseJson.message).to.equals('Update Task Success');\r",
+									"    pm.expect(responseJson).to.ownProperty('payload');\r",
+									"    pm.expect(responseJson.payload).to.be.an('object');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://golang-final-project-3-team-8-production.up.railway.app/tasks/update-status/{{taskId}}",
+							"protocol": "https",
+							"host": [
+								"golang-final-project-3-team-8-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"tasks",
+								"update-status",
+								"{{taskId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit Task with Valid Auth and Payload Copy",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"category_id\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://golang-final-project-3-team-8-production.up.railway.app/tasks/update-category/{{taskId}}",
+									"protocol": "https",
+									"host": [
+										"golang-final-project-3-team-8-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"tasks",
+										"update-category",
+										"{{taskId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 08 Dec 2022 08:15:28 GMT"
+								},
+								{
+									"key": "content-length",
+									"value": "193"
+								},
+								{
+									"key": "x-envoy-upstream-service-time",
+									"value": "11"
+								},
+								{
+									"key": "server",
+									"value": "railway"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Update Task Success\",\n    \"payload\": {\n        \"id\": 1,\n        \"title\": \"tesst\",\n        \"description\": \"desc edit\",\n        \"status\": false,\n        \"user_id\": 2,\n        \"category_id\": 1,\n        \"created_at\": \"2022-12-08T07:42:22.287015Z\"\n    }\n}"
+						},
+						{
+							"name": "Edit Status Task with Valid Auth and Payload",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://golang-final-project-3-team-8-production.up.railway.app/tasks/update-status/{{taskId}}",
+									"protocol": "https",
+									"host": [
+										"golang-final-project-3-team-8-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"tasks",
+										"update-status",
+										"{{taskId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 08 Dec 2022 08:18:27 GMT"
+								},
+								{
+									"key": "content-length",
+									"value": "192"
+								},
+								{
+									"key": "x-envoy-upstream-service-time",
+									"value": "9"
+								},
+								{
+									"key": "server",
+									"value": "railway"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Update Task Success\",\n    \"payload\": {\n        \"id\": 1,\n        \"title\": \"tesst\",\n        \"description\": \"desc edit\",\n        \"status\": true,\n        \"user_id\": 2,\n        \"category_id\": 1,\n        \"created_at\": \"2022-12-08T07:42:22.287015Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit CategoryID Task with Valid Auth and Payload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('response status code should have 200 value', () => {\r",
+									"   pm.response.to.have.status(200);\r",
+									"}); \r",
+									" \r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"}); \r",
+									" \r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									" \r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									" \r",
+									"    pm.expect(responseJson).to.ownProperty('status');\r",
+									"    pm.expect(responseJson.status).to.equals(200);\r",
+									"    pm.expect(responseJson).to.ownProperty('message');\r",
+									"    pm.expect(responseJson.message).to.equals('Update Task Success');\r",
+									"    pm.expect(responseJson).to.ownProperty('payload');\r",
+									"    pm.expect(responseJson.payload).to.be.an('object');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://golang-final-project-3-team-8-production.up.railway.app/tasks/update-category/{{taskId}}",
+							"protocol": "https",
+							"host": [
+								"golang-final-project-3-team-8-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"tasks",
+								"update-category",
+								"{{taskId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit CategoryID Task with Valid Auth and Payload",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"category_id\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://golang-final-project-3-team-8-production.up.railway.app/tasks/update-category/{{taskId}}",
+									"protocol": "https",
+									"host": [
+										"golang-final-project-3-team-8-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"tasks",
+										"update-category",
+										"{{taskId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 08 Dec 2022 08:15:28 GMT"
+								},
+								{
+									"key": "content-length",
+									"value": "193"
+								},
+								{
+									"key": "x-envoy-upstream-service-time",
+									"value": "11"
+								},
+								{
+									"key": "server",
+									"value": "railway"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Update Task Success\",\n    \"payload\": {\n        \"id\": 1,\n        \"title\": \"tesst\",\n        \"description\": \"desc edit\",\n        \"status\": false,\n        \"user_id\": 2,\n        \"category_id\": 1,\n        \"created_at\": \"2022-12-08T07:42:22.287015Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Task with Valid Auth and Payload",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('response status code should have 200 value', () => {\r",
+									"   pm.response.to.have.status(200);\r",
+									"}); \r",
+									" \r",
+									"pm.test('response Content-Type header should have application/json value', () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+									"}); \r",
+									" \r",
+									"pm.test('response body should an object', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson).to.be.an('object');\r",
+									"});\r",
+									" \r",
+									"pm.test('response body should have correct property and value', () => {\r",
+									"    const responseJson = pm.response.json();\r",
+									" \r",
+									"    pm.expect(responseJson).to.ownProperty('status');\r",
+									"    pm.expect(responseJson.status).to.equals(200);\r",
+									"    pm.expect(responseJson).to.ownProperty('message');\r",
+									"    pm.expect(responseJson.message).to.equals('Your task has been successfully deleted');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://golang-final-project-3-team-8-production.up.railway.app/tasks/{{taskId}}",
+							"protocol": "https",
+							"host": [
+								"golang-final-project-3-team-8-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"tasks",
+								"{{taskId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Task with Valid Auth and Payload",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://golang-final-project-3-team-8-production.up.railway.app/tasks/{{taskId}}",
+									"protocol": "https",
+									"host": [
+										"golang-final-project-3-team-8-production",
+										"up",
+										"railway",
+										"app"
+									],
+									"path": [
+										"tasks",
+										"{{taskId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 08 Dec 2022 08:20:23 GMT"
+								},
+								{
+									"key": "content-length",
+									"value": "66"
+								},
+								{
+									"key": "x-envoy-upstream-service-time",
+									"value": "5"
+								},
+								{
+									"key": "server",
+									"value": "railway"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Your task has been successfully deleted\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
